@@ -51,7 +51,7 @@ The project follows a **production-style Excel analytics pipeline**:
 - Sales and returns are **never mixed**
 - Returns modeled as a **separate fact table**
 - No forced many-to-many relationships
-- Logical linking handled via **DAX (`TREATAS`)**
+- Logical linking handled via **DAX (TREATAS)**
 - Dedicated Date table ensures stable filtering and trends
 
 ---
@@ -59,7 +59,7 @@ The project follows a **production-style Excel analytics pipeline**:
 ## 🔧 Power Query (ETL) Highlights
 All cleaning and transformation logic is handled in **Power Query**, not Excel formulas.
 
-### `fact_orders`
+### fact_orders
 - Data type standardization
 - Text cleaning (trimmed fields)
 - Business columns created:
@@ -68,11 +68,11 @@ All cleaning and transformation logic is handled in **Power Query**, not Excel f
   - Estimated Cost
   - Profit Margin %
 
-### `fact_returns`
-- Clean extraction of returned `Order ID`
+### fact_returns
+- Clean extraction of returned Order IDs
 - No aggregation or deletion
 
-### `dim_people`
+### dim_people
 - Region-to-person mapping for reporting
 
 ---
@@ -90,15 +90,15 @@ Key measures include:
 - Profit After Returns
 - Loss-Only Profit (for loss analysis)
 
-All **revenue leakage from returns** is calculated analytically rather than removing data.
+All revenue leakage from returns is calculated **analytically rather than by removing data.**
 
 ---
 
 ## 📊 Executive Dashboard
 
-### 🖥 Dashboard Components
+### Dashboard Components
 
-#### 🔹 KPI Summary
+#### KPI Summary
 - Net Sales  
 - Net Sales After Returns  
 - Total Profit  
@@ -106,42 +106,75 @@ All **revenue leakage from returns** is calculated analytically rather than remo
 - Profit Margin %  
 - Return Rate %
 
-#### 🔹 Core Visuals
-- **Revenue & Profit Trend**
-- **Profitability by Region**
-- **Product Profitability (Category / Sub-Category)**
-- **Top Loss-Making Products**
-- **Top Loss-Making Customers**
+#### Core Visuals
+- Revenue & Profit Trend  
+- Profitability by Region  
+- Product Profitability (Category / Sub-Category)  
+- Top Loss-Making Products  
+- Top Loss-Making Customers  
 
-#### 🔹 Slicers
-- Year
-- Month
-- Region
-- Category
-- Segment
+#### Slicers
+- Year  
+- Month  
+- Region  
+- Category  
+- Segment  
 
 📸 **Dashboard Screenshot:**  
 ![Executive Dashboard](dashboard_screenshots/01_executive_dashboard.jpg)
 
 ---
 
-## 🔍 Key Business Questions Answered
-- Is revenue growth translating into sustainable profit?
-- Which regions contribute most to profit vs margin erosion?
-- Which products and customers consistently generate losses?
-- How much revenue and profit are lost due to returns?
-- Where should operational controls be tightened?
+## 💡 Key Insights (Data-Backed)
+
+- **Overall Profitability**
+  - Total Net Sales: **$1,974,619**
+  - Total Profit: **$286,397**
+  - Overall Profit Margin: **15%**
+
+- **Revenue Leakage Due to Returns**
+  - Return Rate: **6%**
+  - Revenue lost due to returns: **$155,609**
+  - Profit reduced from **$286,397 to $263,165** after returns  
+  - Returns caused a **$23,232 direct profit impact**
+
+- **Regional Performance**
+  - **West region is the most profitable** with **$108,418 profit**
+  - **Central region shows weakest profitability** with only **$39,706 profit**
+  - East region delivers strong margins with **$91,523 profit**
+  - Significant regional variance indicates need for localized strategies
+
+- **Product-Level Profitability**
+  - Office Supplies and Technology categories generate most of the profit
+  - Furniture category contains major loss pockets:
+    - **Tables: –$17,725**
+    - **Bookcases: –$3,473**
+  - Copiers are the most profitable sub-category with **$55,618 profit**
+
+- **High-Risk Products**
+  - Losses are highly concentrated in a few expensive items:
+    - Cubify CubeX 3D Printer Double Head: **–$8,880**
+    - Lexmark MX611 Printer: **–$4,590**
+    - Cubify CubeX Triple Head Printer: **–$3,840**
+  - Top 10 loss-making products contribute a disproportionate share of total losses
+
+- **Customer Profitability Risk**
+  - A small group of customers drive significant losses:
+    - Cindy Stewart: **–$6,626**
+    - Grant Thornton: **–$4,109**
+    - Luke Foster: **–$3,584**
+  - Indicates opportunity for pricing review and return policy controls
+
+- **Trend Observations**
+  - Strong seasonality with revenue peaks in **November–December**
+  - Certain months show profit volatility despite high sales, indicating margin instability
 
 ---
 
-## 💡 Key Insights
-- Revenue growth does not always correlate with profit growth
-- Returns cause measurable revenue and profit leakage
-- Losses are often concentrated in a small subset of products or customers
-- Regional performance varies significantly in margin quality
+## 🔍 Business Conclusion
 
-**Conclusion:**  
-Improving **profit quality and return control** can yield higher ROI than focusing solely on topline growth.
+Although the business generates healthy overall margins, **returns and a small subset of products and customers create significant hidden profit leakage.**  
+Targeted actions on high-loss products, better return controls, and regional strategy adjustments can meaningfully improve realized profitability.
 
 ---
 
@@ -157,8 +190,8 @@ Improving **profit quality and return control** can yield higher ROI than focusi
 ---
 
 ## 🚀 Future Enhancements
-- Month-over-Month / Year-over-Year growth analysis
-- Customer lifetime value (CLV)
+- Month-over-Month and Year-over-Year growth analysis
+- Customer lifetime value (CLV) metrics
 - Product-level return rate analysis
 - RFM segmentation
 - Migration to Power BI or SQL warehouse
